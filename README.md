@@ -35,7 +35,7 @@ ResumeIQ analyzes your resume against any job description, gives you an ATS scor
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/resumeiq.git
+git clone https://github.com/jaswanthbadipati/resumeiq.git
 cd resumeiq
 ```
 
@@ -62,24 +62,6 @@ streamlit run app.py
 ```
 
 Open [http://localhost:8501](http://localhost:8501)
-
----
-
-## ☁️ Deploy to Streamlit Community Cloud (Free)
-
-1. Push this repo to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io) → sign in with GitHub
-3. Click **Create app** → select your repo → set main file as `app.py`
-4. Go to **Advanced settings → Secrets** and add:
-```toml
-GROQ_API_KEY = "gsk_your_key_here"
-```
-5. Click **Deploy** — live URL ready in ~2 minutes
-
-Your app will be live at:
-```
-https://yourusername-resumeiq-app-xxxxxx.streamlit.app
-```
 
 ---
 
@@ -142,7 +124,6 @@ groq>=0.9.0
 
 Built by **Jaswanth Badipati**
 B.Tech AI & Data Science — VR Siddhartha Engineering College, Andhra Pradesh
-TOMAN Dev Group · Google Developer Group Solution Challenge
 
 ---
 
