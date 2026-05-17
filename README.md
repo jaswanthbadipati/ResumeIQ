@@ -1,37 +1,36 @@
 # 🎯 ResumeIQ — AI-Powered ATS Resume Analyzer
 
-> Upload your resume. Paste the job description. Get your ATS score and exact fixes to land the interview.
+**Stop getting filtered out before a human even reads your resume.**
 
-
-
-## ✨ What It Does
-
-**ResumeIQ** analyzes your resume against any job description using Google Gemini 1.5 Flash and tells you exactly why you're getting filtered out by ATS systems — and how to fix it.
-
-| Feature | Description |
-|---|---|
-| 📊 ATS Score | 0–100 score with verdict (Poor / Fair / Good / Excellent) |
-| 🔑 Keyword Analysis | Green = found, Red = missing from JD |
-| 🛠 Section Feedback | Per-section issues with specific fixes |
-| ⚡ Quick Wins | 4 highest-impact changes to make right now |
-| ✍️ AI Summary Rewrite | Optimized professional summary for the JD |
+ResumeIQ analyzes your resume against any job description, gives you an ATS score, and tells you exactly what to fix — keyword gaps, weak sections, and a rewritten summary — all in under 15 seconds.
 
 ---
 
-## 🛠 Tech Stack
+## 📸 Features
 
-| Layer | Tool | Cost |
+| | Feature | What it does |
 |---|---|---|
-| Frontend + Backend | Streamlit | Free |
-| AI Model | Gemini 1.5 Flash | Free (15 req/min) |
-| PDF Parsing | pdfplumber | Free |
-| Deployment | Streamlit Community Cloud | Free |
-
-**Total cost: ₹0**
+| 📊 | **ATS Score** | 0–100 score with verdict: Poor / Fair / Good / Excellent |
+| 🔑 | **Keyword Analysis** | Shows which JD keywords are present ✅ and which are missing ❌ |
+| 🛠️ | **Section Feedback** | Per-section issues (Summary, Skills, Experience) with specific fixes |
+| ⚡ | **Quick Wins** | 4 highest-impact changes to make right now |
+| ✍️ | **AI Summary Rewrite** | Drops an ATS-optimized professional summary tailored to the JD |
 
 ---
 
-## ⚙️ Setup — Run Locally
+## 🛠️ Tech Stack
+
+| Layer | Tool |
+|---|---|
+| App framework | Streamlit |
+| AI model | Llama 3.3 70B via Groq API |
+| PDF parsing | pdfplumber |
+| Deployment | Streamlit Community Cloud |
+| **Total cost** | **₹0 / $0** |
+
+---
+
+## ⚙️ Run Locally
 
 ### 1. Clone the repo
 
@@ -46,36 +45,41 @@ cd resumeiq
 pip install -r requirements.txt
 ```
 
-### 3. Add your Gemini API key
+### 3. Add your Groq API key
 
-Create a file at `.streamlit/secrets.toml`:
+Create the file `.streamlit/secrets.toml`:
 
 ```toml
-GEMINI_API_KEY = "your_gemini_api_key_here"
+GROQ_API_KEY = "gsk_your_key_here"
 ```
 
-Get a free API key at → [aistudio.google.com](https://aistudio.google.com) (no billing required)
+Get a free API key at → [console.groq.com](https://console.groq.com) — no billing required, 14,400 requests/day free.
 
-### 4. Run the app
+### 4. Run
 
 ```bash
 streamlit run app.py
 ```
 
-Open [http://localhost:8501](http://localhost:8501) in your browser.
+Open [http://localhost:8501](http://localhost:8501)
 
 ---
 
-## ☁️ Deploy Free on Streamlit Community Cloud
+## ☁️ Deploy to Streamlit Community Cloud (Free)
 
 1. Push this repo to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io) → **New app**
-3. Select your repo and set `app.py` as the main file
-4. Under **Advanced settings → Secrets**, add:
-   ```toml
-   GEMINI_API_KEY = "your_gemini_api_key_here"
-   ```
-5. Click **Deploy** — your app is live in ~2 minutes with a public URL
+2. Go to [share.streamlit.io](https://share.streamlit.io) → sign in with GitHub
+3. Click **Create app** → select your repo → set main file as `app.py`
+4. Go to **Advanced settings → Secrets** and add:
+```toml
+GROQ_API_KEY = "gsk_your_key_here"
+```
+5. Click **Deploy** — live URL ready in ~2 minutes
+
+Your app will be live at:
+```
+https://yourusername-resumeiq-app-xxxxxx.streamlit.app
+```
 
 ---
 
@@ -83,10 +87,10 @@ Open [http://localhost:8501](http://localhost:8501) in your browser.
 
 ```
 resumeiq/
-├── app.py               # Main Streamlit app (all-in-one)
-├── requirements.txt     # Python dependencies
+├── app.py                  # Entire app — frontend + AI logic
+├── requirements.txt        # Python dependencies
 ├── .streamlit/
-│   └── secrets.toml     # API key (never commit this)
+│   └── secrets.toml        # API keys (never commit this)
 └── README.md
 ```
 
@@ -94,23 +98,23 @@ resumeiq/
 
 ## 🔒 Privacy
 
-- Resumes are processed **in memory only** — nothing is stored or logged
+- Resumes are processed **in memory only** — nothing is stored or saved
 - No database, no user accounts, no data retention
-- Each session is completely stateless
+- Each analysis is completely stateless
 
 ---
 
-## 🧠 How the ATS Score Works
+## 🧠 How the ATS Score is Calculated
 
-The score is calculated by Gemini based on:
+Llama 3.3 70B scores your resume based on:
 
-- **Keyword match** — how many JD keywords appear in your resume
-- **Relevance** — does your experience align with the role
-- **Quantifiable achievements** — numbers, percentages, impact metrics
-- **Formatting signals** — clean sections, standard headings, no tables/columns that ATS can't parse
+- **Keyword match** — how many required JD keywords appear in your resume
+- **Relevance** — does your experience align with the role responsibilities
+- **Quantifiable achievements** — numbers, percentages, and impact metrics
 - **Section completeness** — Summary, Skills, Experience, Education all present
+- **Formatting signals** — clean sections and standard headings ATS can parse
 
-A score above **80** significantly increases your chances of passing ATS filters.
+> A score above **80** significantly increases your chances of passing ATS filters.
 
 ---
 
@@ -119,30 +123,29 @@ A score above **80** significantly increases your chances of passing ATS filters
 ```
 streamlit>=1.35.0
 pdfplumber>=0.10.3
-google-generativeai>=0.7.0
+groq>=0.9.0
 ```
 
 ---
 
-## 🤝 Contributing
+## 🗺️ Roadmap
 
-Pull requests welcome! Ideas for improvement:
-
-- [ ] Support DOCX resume uploads
-- [ ] Side-by-side before/after resume view
-- [ ] Export optimized resume suggestions as PDF
-- [ ] History of past analyses (with Supabase free tier)
-- [ ] LinkedIn job scraper to auto-fill JD
+- [ ] DOCX resume upload support
+- [ ] Score history across multiple analyses
+- [ ] Side-by-side before/after view
+- [ ] Export optimized suggestions as PDF
+- [ ] Auto-fill JD from a LinkedIn job URL
 
 ---
 
-## 👨‍💻 Built By
+## 👨‍💻 About
 
-**Jaswanth Badipati** — B.Tech AI & Data Science, VR Siddhartha Engineering College  
-Part of TOMAN Dev Group | Google Developer Group Solution Challenge participant
+Built by **Jaswanth Badipati**
+B.Tech AI & Data Science — VR Siddhartha Engineering College, Andhra Pradesh
+TOMAN Dev Group · Google Developer Group Solution Challenge
 
 ---
 
 ## 📄 License
 
-MIT License — free to use, modify, and distribute.
+MIT — free to use, fork, and build on.
