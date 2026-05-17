@@ -2,13 +2,7 @@
 
 > Upload your resume. Paste the job description. Get your ATS score and exact fixes to land the interview.
 
----
 
-## 🚀 Live Demo
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io)
-
----
 
 ## ✨ What It Does
 
